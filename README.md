@@ -106,3 +106,4 @@ python-dotenv==1.0.1
 
 
 
+# trading_bot

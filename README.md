@@ -1,109 +1,143 @@
-Trading Bot
+# 🚀 Trading Bot – Binance Futures Testnet
 
-Binance Futures Testnet
+## 👨‍💻 Author
+**Suryansh**  
+Python Developer Intern Candidate  
 
+---
 
+## 🌟 Key Highlights
 
+- Fully functional CLI-based trading bot using Binance Futures Testnet  
+- Supports both **MARKET** and **LIMIT** orders with BUY/SELL operations  
+- Clean modular architecture (client, orders, validators, CLI)  
+- Robust error handling for API failures and invalid inputs  
+- Comprehensive logging of requests, responses, and errors  
+- Handles real-world trading constraints:
+  - Timestamp synchronization issues  
+  - Minimum notional value (~100 USDT)  
+  - Binance price band restrictions  
 
+---
 
-Submitted by - Suryansh
+## 📌 Problem Statement
 
-Role applying for - Python Developer Intern Candidate
+The objective of this project is to build a Python application that interacts with the Binance Futures Testnet to:
 
- 
+- Place MARKET and LIMIT orders  
+- Accept user inputs via CLI  
+- Provide structured output and logging  
+- Handle real-world API constraints and failures  
 
-Key Highlights
+---
 
-• Fully functional CLI-based trading bot using Binance Futures Testnet
+## 🧠 Approach & Design
 
-• Supports both MARKET and LIMIT orders with BUY/SELL operations
+The application follows a **layered architecture**:
 
-• Robust error handling for API failures, invalid inputs, and trading constraints
+### 1. Client Layer (`client.py`)
+- Handles API authentication  
+- Connects to Binance Futures Testnet  
+- Manages timestamp synchronization  
 
-• Structured modular codebase for scalability and maintainability
+### 2. Order Layer (`orders.py`)
+- Implements order placement logic  
+- Supports MARKET and LIMIT orders  
+- Fetches updated order status  
 
-• Comprehensive logging of requests, responses, and errors
+### 3. Validation Layer (`validators.py`)
+- Validates:
+  - Order type  
+  - Side (BUY/SELL)  
+  - Quantity  
+  - Price (for LIMIT orders)  
 
-• Demonstrates real-world debugging (timestamp sync, notional limits, price filters)
+### 4. CLI Layer (`cli.py`)
+- Parses user input using argparse  
+- Displays structured request & response  
+- Handles user-facing errors  
 
-Overview
+### 5. Logging Layer (`logging_config.py`)
+- Logs:
+  - API requests  
+  - Responses  
+  - Errors  
 
-This project is a Python-based command-line trading bot designed to interact with Binance Futures Testnet. It enables users to place MARKET and LIMIT orders while maintaining a clean architecture and production-oriented practices.
+---
 
-Project Structure
+## 🧱 Project Structure
+```  trading_bot/
+│
+├── bot/
+│ ├── init.py
+│ ├── client.py # Binance client setup
+│ ├── orders.py # Order placement logic
+│ ├── validators.py # Input validation
+│ ├── logging_config.py # Logging configuration
+│
+├── cli.py # CLI entry point
+├── requirements.txt
+├── trading.log # Generated log file
+└── README.md
+```
+## ⚙️ Setup Instructions
 
-trading\_bot/
+1. Clone the repository:
+```bash
+git clone <your-repo-link>
+cd trading_bot
+```
 
-&#x20; bot/
+3. Install dependencies: 
+```
+pip install -r requirements.txt
+```
+4. Create a .env file:
+```
+API_KEY=your_testnet_api_key
+API_SECRET=your_testnet_secret_key
+```
+6. Ensure system time is synchronized
 
-&#x20;   client.py
-
-&#x20;   orders.py
-
-&#x20;   validators.py
-
-&#x20;   logging\_config.py
-
-&#x20; cli.py
-
-&#x20; requirements.txt
-
-&#x20; trading.log
-
-&#x20; README.md
-
-Setup Instructions
-
-1\. Clone the repository
-
-2\. Install dependencies using pip install -r requirements.txt
-
-3\. Create a .env file with API\_KEY and API\_SECRET
-
-4\. Ensure system time is synchronized
-
-How to Run
-
-Market Order:
-
+MARKET Order
+```
 python cli.py --symbol BTCUSDT --side BUY --type MARKET --quantity 0.002
-
-
-
-Limit Order:
-
+``` 
+LIMIT Order
+```
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 65000
+```
+## 📊 Sample Output
 
-Features
+### Market Order
+```
+================ ORDER REQUEST ================
+Symbol : BTCUSDT
+Side : BUY
+Type : MARKET
+Quantity : 0.002
+Price : N/A
+================ ORDER RESPONSE ===============
+Order ID : 13002230029
+Status : FILLED
+ExecutedQty: 0.002
+Avg Price : 66650.00000
 
-• MARKET and LIMIT order support
+SUCCESS: Order fully executed
+```
+### Limit Order
+```
+================ ORDER REQUEST ================
+Symbol : BTCUSDT
+Side : SELL
+Type : LIMIT
+Quantity : 0.002
+Price : 65000
+================ ORDER RESPONSE ===============
+Order ID : 13002239363
+Status : FILLED
+ExecutedQty: 0.002
+Avg Price : 66924.90000
 
-• BUY and SELL operations
-
-• CLI input validation
-
-• Logging and exception handling
-
-• Modular architecture
-
-Logging
-
-All trading activities including requests, responses, and errors are recorded in trading.log for traceability and debugging.
-
-Assumptions \& Notes
-
-• Minimum order notional value is approximately 100 USDT
-
-• Testnet environment may behave differently from real markets
-
-• Some orders may remain pending due to simulated liquidity
-
-Dependencies
-
-python-binance==1.0.36
-
-python-dotenv==1.0.1
-
-
-
-# trading_bot
+SUCCESS: Order fully executed
+```

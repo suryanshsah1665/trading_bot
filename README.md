@@ -1,12 +1,12 @@
-# 🚀 Trading Bot – Binance Futures Testnet
+#  Trading Bot – Binance Futures Testnet
 
-## 👨‍💻 Author
+## Author
 **Suryansh**  
 Python Developer Intern Candidate  
 
 ---
 
-## 🌟 Key Highlights
+##  Key Highlights
 
 - Fully functional CLI-based trading bot using Binance Futures Testnet  
 - Supports both **MARKET** and **LIMIT** orders with BUY/SELL operations  
@@ -20,7 +20,7 @@ Python Developer Intern Candidate
 
 ---
 
-## 📌 Problem Statement
+##  Problem Statement
 
 The objective of this project is to build a Python application that interacts with the Binance Futures Testnet to:
 
@@ -31,7 +31,7 @@ The objective of this project is to build a Python application that interacts wi
 
 ---
 
-## 🧠 Approach & Design
+##  Approach & Design
 
 The application follows a **layered architecture**:
 
@@ -65,11 +65,11 @@ The application follows a **layered architecture**:
 
 ---
 
-## 🧱 Project Structure
+##  Project Structure
 ```  trading_bot/
 │
 ├── bot/
-│ ├── init.py
+│ ├── __init__.py
 │ ├── client.py # Binance client setup
 │ ├── orders.py # Order placement logic
 │ ├── validators.py # Input validation
@@ -80,24 +80,26 @@ The application follows a **layered architecture**:
 ├── trading.log # Generated log file
 └── README.md
 ```
-## ⚙️ Setup Instructions
+The project follows a modular architecture separating API interaction, business logic, validation, and CLI handling.
+## How to Run
+##  Setup Instructions
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/suryanshsah1665/trading_bot.git
 cd trading_bot
 ```
 
-3. Install dependencies: 
-```
+2 Install dependencies: 
+```bash 
 pip install -r requirements.txt
 ```
-4. Create a .env file:
+3. Create a .env file:
 ```
 API_KEY=your_testnet_api_key
 API_SECRET=your_testnet_secret_key
 ```
-6. Ensure system time is synchronized
+4. Ensure system time is synchronized
 
 MARKET Order
 ```
@@ -107,7 +109,7 @@ LIMIT Order
 ```
 python cli.py --symbol BTCUSDT --side SELL --type LIMIT --quantity 0.002 --price 65000
 ```
-## 📊 Sample Output
+## Sample Output
 
 ### Market Order
 ```
